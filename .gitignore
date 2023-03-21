@@ -1,49 +1,38 @@
 # Compiled class file
 *.class
 
-# Log file
+# Log files
 *.log
 
-# Package Files #
+# Package files
 *.jar
 *.war
-*.nar
 *.ear
 *.zip
 *.tar.gz
 *.rar
 
-# IntelliJ IDEA
+# IDE files
 .idea/
 *.iml
 *.ipr
 *.iws
-
-# Aqua
-/target/
-/logs/
-*.log
-
-# Eclipse
-bin/
-target/
 .settings/
 .classpath
 .project
-*.log
-*.cache
 
-# Mac
+# Build directories
+/bin/
+/target/
+/build/
+
+# Other
 .DS_Store
 
-# Maven
+# Build system-specific files
 log/
-target/
-
-# Gradle
 gradle/
-gradle/
-.gradle/
+*.gradle
 settings.gradle
-gradlew.bat
 gradlew
+gradlew.bat
