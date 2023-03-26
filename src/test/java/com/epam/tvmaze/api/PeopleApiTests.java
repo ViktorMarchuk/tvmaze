@@ -23,14 +23,4 @@ public class PeopleApiTests{
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(),200);
     }
-    @Test
-    public void get(){
-        given()
-                .contentType(ContentType.JSON)
-                .when()
-                .get("https://api.tvmaze.com/search/people?q=Sarah Shahi")
-                .then()
-                .statusCode(200)
-                .log().all();
-    }
 }

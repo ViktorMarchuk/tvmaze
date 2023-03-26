@@ -11,13 +11,13 @@ public class EpisodeApiTests{
 
     @Test
     public void testCorrectEpisode(){
-        Response response = EpisodeApi.getEpisode(dataApi.BASE_URL, dataApi.CORRECT_EPISODE);
+        Response response = EpisodeApi.getEpisode(dataApi.BASE_URL, dataApi.CORRECT_EPISODE_ENDPOINT);
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
     @Test
     public void testIncorrectEpisode(){
-        Response response=EpisodeApi.getEpisode(dataApi.BASE_URL, dataApi.INCORRECT_EPISODE);
+        Response response=EpisodeApi.getEpisode(dataApi.BASE_URL, dataApi.INCORRECT_EPISODE_ENDPOINT);
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(),404);
     }
