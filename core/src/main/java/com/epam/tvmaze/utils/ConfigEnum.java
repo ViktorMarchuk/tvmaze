@@ -11,5 +11,5 @@ public enum ConfigEnum {
     BASE_URL("baseUrl"),
     API_URL("apiUrl"),
     BROWSER("browser");
-    private String param;
+    private final String param;
 }

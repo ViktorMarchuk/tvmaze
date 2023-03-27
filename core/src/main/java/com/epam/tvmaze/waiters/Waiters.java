@@ -16,7 +16,8 @@ public class Waiters {
 
     public static void waitForLoad() {
         WebDriverWait wait = new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
-        wait.until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        wait.until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd).
+                executeScript("return document.readyState").equals("complete"));
         log.info("page is load");
     }
 
