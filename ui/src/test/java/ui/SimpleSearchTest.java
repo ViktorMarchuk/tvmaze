@@ -1,4 +1,4 @@
-package com.epam.tvmaze.ui;
+package ui;
 
 import com.epam.tvmaze.pages.HomePage;
 import lombok.extern.log4j.Log4j2;
