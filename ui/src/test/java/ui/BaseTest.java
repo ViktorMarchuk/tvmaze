@@ -1,4 +1,4 @@
-package com.epam.tvmaze.ui;
+package ui;
 
 import com.epam.tvmaze.driver.Driver;
 import com.epam.tvmaze.pages.HomePage;
