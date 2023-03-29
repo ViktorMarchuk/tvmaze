@@ -7,13 +7,15 @@ import org.testng.annotations.Test;
 
 @Log4j2
 public class PeopleApiTests{
-    ActionsWithPeopleApi actionsWithPeopleApi=new ActionsWithPeopleApi();
+    ActionsWithPeopleApi actionsWithPeopleApi = new ActionsWithPeopleApi();
+
     @Test
     public void testCorrectPersonNameWithStatusCode200(){
-        Assert.assertEquals(actionsWithPeopleApi.getCorrectNameApi().getStatusCode(),200);
+        Assert.assertEquals(actionsWithPeopleApi.getCorrectNameApi().getStatusCode(), 200);
     }
+
     @Test
     public void testIncorrectPersonNameWithStatus200(){
-        Assert.assertEquals(actionsWithPeopleApi.getIncorrectNameApi().getStatusCode(),200);
+        Assert.assertEquals(actionsWithPeopleApi.getIncorrectNameApi().getStatusCode(), 200);
     }
 }

@@ -5,13 +5,15 @@ import com.epam.tvmaze.utils.ConfigReaderApiProperties;
 import io.restassured.response.Response;
 
 public class ActionsWithEpisodeApi{
-    EpisodeApi episodeApi=new EpisodeApi();
+    EpisodeApi episodeApi = new EpisodeApi();
+
     public Response getCorrectEpisodeApi(){
-        return episodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api","apiUrl"),
-                ConfigReaderApiProperties.getValueProperties("config_api","correctEpisodeEndpoint"));
+        return episodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
+                ConfigReaderApiProperties.getValueProperties("config_api", "correctEpisodeEndpoint"));
     }
+
     public Response getIncorrectEpisodeApi(){
-        return episodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api","apiUrl"),
-                ConfigReaderApiProperties.getValueProperties("config_api","incorrectEpisodeEndpoint"));
+        return episodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
+                ConfigReaderApiProperties.getValueProperties("config_api", "incorrectEpisodeEndpoint"));
     }
 }
