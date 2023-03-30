@@ -1,0 +1,22 @@
+# Define the base image used for building the project
+image: maven:3.8.4-jdk-11-openj9
+
+# Define the stages for the pipeline
+stages:
+  - build
+  - test
+
+# Build stage
+build:
+  stage: build
+  script:
+    - mvn clean package -DskipTests=true
+  artifacts:
+    paths:
+      - target/*.jar
+
+# Test stage
+test:
+  stage: test
+  script:
+    - mvn test
