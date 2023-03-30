@@ -1,5 +1,5 @@
 # Define the base image used for building the project
-image: maven:3.8.4-jdk-11-openj9
+image: maven:3.8.4-jdk-11
 
 # Define the stages for the pipeline
 stages:
@@ -18,5 +18,14 @@ build:
 # Test stage
 test:
   stage: test
+  image: maven:3.8.4-jdk-11
+  before_script:
+    - apt-get update
+    - apt-get install -y libglib2.0-0 libnss3
+    - export CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+    - curl -sS -o /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+    - unzip /tmp/chromedriver_linux64.zip -d /tmp
+    - chmod +x /tmp/chromedriver
+    - export PATH=$PATH:/tmp/
   script:
     - mvn test
