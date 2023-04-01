@@ -14,18 +14,17 @@ public class Driver {
     private Driver() {
     }
 
-    public static WebDriver getInstance() {
+    public static synchronized WebDriver getInstance() {
         if (Objects.isNull(getThreadLocalDriver())) {
             WebDriver driver = WebDriverFactory.installDriver(getValueOfBrowser());
             threadLocalDriver.set(driver);
-            driver.navigate().to("http://localhost:8080/leiloes");
         }
         WebDriver driver = getThreadLocalDriver();
         driver.manage().window().maximize();
         return driver;
     }
 
-    private static WebDriver getThreadLocalDriver() {
+    private static synchronized WebDriver getThreadLocalDriver() {
         return threadLocalDriver.get();
     }
 

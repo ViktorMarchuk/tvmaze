@@ -7,10 +7,11 @@ import org.testng.annotations.Test;
 
 @Log4j2
 public class SimpleSearchTest extends BaseTest {
-    HomePage page = new HomePage();
 
     @Test
     void simpleSearch() {
+        HomePage page = new HomePage();
+
         log.info("Search test");
         String expected = "SEARCH";
 
