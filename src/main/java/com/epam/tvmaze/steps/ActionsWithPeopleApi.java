@@ -1,19 +1,21 @@
 package com.epam.tvmaze.steps;
 
-import com.epam.tvmaze.api.PeopleApi;
+import com.epam.tvmaze.service.PeopleApi;
 import com.epam.tvmaze.utils.ConfigReaderApiProperties;
 import io.restassured.response.Response;
 
 public class ActionsWithPeopleApi{
-    PeopleApi peopleApi = new PeopleApi();
+    String peoplePath = "search/people";
+    String correctPersonNameEndpoint = "?q=Sarah Shahi";
+    String incorrectPersonNameEndpoint = "?q=&";
 
     public Response getCorrectNameApi(){
-        return peopleApi.getPersonName(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
-                ConfigReaderApiProperties.getValueProperties("config_api", "correctPersonNameEndpoint"));
+        return PeopleApi.getPersonName(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
+                peoplePath, correctPersonNameEndpoint);
     }
 
     public Response getIncorrectNameApi(){
-        return peopleApi.getPersonName(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
-                ConfigReaderApiProperties.getValueProperties("config_api", "incorrectPersonNameEndpoint"));
+        return PeopleApi.getPersonName(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
+                peoplePath, incorrectPersonNameEndpoint);
     }
 }

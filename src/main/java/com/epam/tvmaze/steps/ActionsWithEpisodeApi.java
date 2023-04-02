@@ -1,19 +1,21 @@
 package com.epam.tvmaze.steps;
 
-import com.epam.tvmaze.api.EpisodeApi;
+import com.epam.tvmaze.service.EpisodeApi;
 import com.epam.tvmaze.utils.ConfigReaderApiProperties;
 import io.restassured.response.Response;
 
 public class ActionsWithEpisodeApi{
-    EpisodeApi episodeApi = new EpisodeApi();
+    String episodePath = "shows/1/episodebynumber";
+    String correctEpisodeEndpoint = "?season=1&number=1";
+    String incorrectEpisodeEndpoint = "?season=1&number=0";
 
     public Response getCorrectEpisodeApi(){
-        return episodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
-                ConfigReaderApiProperties.getValueProperties("config_api", "correctEpisodeEndpoint"));
+        return EpisodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
+                episodePath, correctEpisodeEndpoint);
     }
 
     public Response getIncorrectEpisodeApi(){
-        return episodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
-                ConfigReaderApiProperties.getValueProperties("config_api", "incorrectEpisodeEndpoint"));
+        return EpisodeApi.getEpisode(ConfigReaderApiProperties.getValueProperties("config_api", "apiUrl"),
+                episodePath, incorrectEpisodeEndpoint);
     }
 }
