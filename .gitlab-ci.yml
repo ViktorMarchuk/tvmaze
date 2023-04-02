@@ -21,11 +21,12 @@ test:
   image: maven:3.8.4-jdk-11
   before_script:
     - apt-get update
-    - apt-get install -y libglib2.0-0 libnss3 libxcb1
+    - apt-get install -y libglib2.0-0 libnss3 libxcb1 google-chrome-stable
     - export CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
     - curl -sS -o /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
     - unzip /tmp/chromedriver_linux64.zip -d /tmp
     - chmod +x /tmp/chromedriver
     - export PATH=$PATH:/tmp/
+    - export CHROME_BIN=/usr/bin/google-chrome
   script:
     - mvn test
