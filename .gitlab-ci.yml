@@ -14,25 +14,29 @@ build:
   artifacts:
     paths:
       - target/*.jar
-
 # Test stage
 test:
   stage: test
   image: maven:3.8.4-jdk-11
   before_script:
-#    - apt-get update
-    #      - apt-get install -y libglib2.0-0 libnss3 libxcb1 google-chrome-stable
-    #      - export CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-    #      - curl -sS -o /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-    #      - unzip /tmp/chromedriver_linux64.zip -d /tmp
-    #      - chmod +x /tmp/chromedriver
-    #      - export PATH=$PATH:/tmp/
-    #      - export CHROME_BIN=/usr/bin/google-chrome
+    # Add LambdaTest settings
+    - export LT_USERNAME=kava.march.2023
+    - export LT_ACCESS_KEY=N6DCHH6j9sqRif30J5GwIVg2IF9HUJypR0ZGOdgIfFvZ5h2Gde
 
-    # Add BrowserStack settings
-    - export BROWSERSTACK_USERNAME=anastasiya_Kc8GNg
-    - export BROWSERSTACK_ACCESS_KEY=65KhVCyY92Emd7eMYXyy
-    - export BROWSERSTACK_LOCAL=false
   script:
-    # Add BrowserStack integration with Selenium
-    - mvn test -Dbrowserstack.username=$BROWSERSTACK_USERNAME -Dbrowserstack.accesskey=$BROWSERSTACK_ACCESS_KEY
+    # Add LambdaTest integration with Selenium
+    - mvn test -Dlt.username=$LT_USERNAME -Dlt.accesskey=$LT_ACCESS_KEY
+
+# Allow to run test job manually
+test-manual:
+  stage: test
+  when: manual
+  image: maven:3.8.4-jdk-11
+  before_script:
+    # Add LambdaTest settings
+    - export LT_USERNAME=kava.march.2023
+    - export LT_ACCESS_KEY=N6DCHH6j9sqRif30J5GwIVg2IF9HUJypR0ZGOdgIfFvZ5h2Gde
+
+  script:
+    # Add LambdaTest integration with Selenium
+    - mvn test -Dlt.username=$LT_USERNAME -Dlt.accesskey=$LT_ACCESS_KEY
