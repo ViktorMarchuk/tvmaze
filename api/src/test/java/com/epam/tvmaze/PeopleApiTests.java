@@ -19,7 +19,7 @@ public class PeopleApiTests {
     }
 
     @Test
-    public void testIncorrectPerson() {
+    public void testIncorrectPerson(){
         String incorrectPersonNameEndPoint = "?q=&";
         Assert.assertEquals(ActionsWithPeopleApi.getNameApi(ConfigReader.getValue(ConfigEnum.API_URL),
                 PEOPLE_PATH, incorrectPersonNameEndPoint).getStatusCode(), 200);

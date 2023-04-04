@@ -19,7 +19,7 @@ public class EpisodeApiTests {
     }
 
     @Test
-    public void testIncorrectEpisodeEndpoint() {
+    public void testIncorrectEpisodeEndpoint(){
         String incorrectEpisodeEndpoint = "?season=1&number=0";
         Assert.assertEquals(ActionsWithEpisodeApi.getEpisodeApi(ConfigReader.getValue(ConfigEnum.API_URL),
                 EPISODE_PATH, incorrectEpisodeEndpoint).getStatusCode(), 404);
