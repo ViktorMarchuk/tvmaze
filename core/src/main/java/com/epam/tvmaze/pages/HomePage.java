@@ -1,6 +1,5 @@
 package com.epam.tvmaze.pages;
 
-import com.epam.tvmaze.driver.Driver;
 import com.epam.tvmaze.utils.ConfigEnum;
 import com.epam.tvmaze.utils.ConfigReader;
 import lombok.extern.log4j.Log4j2;
@@ -16,7 +15,7 @@ public class HomePage extends AbstractPage {
     private WebElement labelSearch;
 
     public HomePage openPage() {
-        Driver.getInstance().navigate().to(ConfigReader.getValue(ConfigEnum.BASE_URL));
+        driver.navigate().to(ConfigReader.getValue(ConfigEnum.BASE_URL));
         return this;
     }
 

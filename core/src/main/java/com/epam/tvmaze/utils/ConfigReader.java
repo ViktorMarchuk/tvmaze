@@ -8,4 +8,8 @@ public class ConfigReader {
     public static String getValue(ConfigEnum configEnum) {
         return rb.getString(configEnum.getParam());
     }
+
+    public static String getValue(ConfigEnumDriverRemote configEnumDriverRemote) {
+        return rb.getString(configEnumDriverRemote.getParam());
+    }
 }

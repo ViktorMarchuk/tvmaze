@@ -1,0 +1,30 @@
+# Define the base image used for building the project
+image: maven:3.8.4-jdk-11
+
+# Define the stages for the pipeline
+stages:
+  - build
+  - test
+
+# Build stage
+build:
+  stage: build
+  script:
+    - mvn clean package -DskipTests=true
+  artifacts:
+    paths:
+      - target/*.jar
+
+# Allow to run test job manually
+test-manual:
+  stage: test
+  when: manual
+  image: maven:3.8.4-jdk-11
+  before_script:
+    # Add LambdaTest settings
+    - export LT_USERNAME=kava.march.2023
+    - export LT_ACCESS_KEY=N6DCHH6j9sqRif30J5GwIVg2IF9HUJypR0ZGOdgIfFvZ5h2Gde
+
+  script:
+    # Add LambdaTest integration with Selenium
+    - mvn test -Dlt.username=$LT_USERNAME -Dlt.accesskey=$LT_ACCESS_KEY
