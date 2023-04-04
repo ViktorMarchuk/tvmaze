@@ -2,7 +2,7 @@ package ui;
 
 import com.epam.tvmaze.pages.HomePage;
 import lombok.extern.log4j.Log4j2;
-import org.testng.Assert;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
 @Log4j2
@@ -17,6 +17,6 @@ public class SimpleSearchTest extends BaseTest {
 
         page.inputSearchRequest("Wednesday");
 
-        Assert.assertEquals(page.getSearchResponse(), expected);
+        Assertions.assertThat(page.getSearchResponse()).isEqualTo(expected);
     }
 }
