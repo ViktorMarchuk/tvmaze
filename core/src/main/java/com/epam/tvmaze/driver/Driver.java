@@ -22,7 +22,7 @@ public class Driver {
 
     public static synchronized WebDriver getInstance() {
         if (Objects.isNull(getThreadLocalDriver())) {
-            boolean isRemote = Boolean.parseBoolean(ConfigReader.getValue(ConfigEnumDriverRemote.DRIVER_REMOTE));
+            boolean isRemote = Boolean.parseBoolean(ConfigReader.getValue(ConfigEnumDriverRemote.REMOTE));
             WebDriver driver = isRemote ? createRemoteInstance() : WebDriverFactory.installDriver(getValueOfBrowser());
             threadLocalDriver.set(driver);
         }

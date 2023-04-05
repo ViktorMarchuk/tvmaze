@@ -1,4 +1,4 @@
-package com.epam.tvmaze;
+package com.epam.tvmaze.test;
 
 import com.epam.tvmaze.steps_api.ActionsWithEpisodeApi;
 import com.epam.tvmaze.utils.ConfigEnum;
