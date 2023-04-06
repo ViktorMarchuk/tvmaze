@@ -22,7 +22,6 @@ public class RestClient {
                 .when()
                 .get(url);
         log.info("Request: " + url);
-        getOKStatusCode();
     }
 
     public int getOKStatusCode() {
@@ -44,6 +43,10 @@ public class RestClient {
 
     public boolean isResponseContainsTVShow(String tvShow) {
         return RestClientUtils.isResponseContainsTVShow(tvShow, getBody());
+    }
+
+    public boolean isResponseValid(String body) {
+        return RestClientUtils.isResponseValid(body);
     }
 
     public void closeClient() {
