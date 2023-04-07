@@ -12,7 +12,7 @@ public class TVShowSingleSearchNegativeTest extends BaseTest {
         String expectedResult = "null";
         client.sendGet(url);
 
-        assertThat(client.getNotFoundStatusCode()).isEqualTo(404);
+        assertThat(client.getStatusCode()).isEqualTo(404);
         assertThat(client.getBody()).isEqualTo(expectedResult);
     }
 }

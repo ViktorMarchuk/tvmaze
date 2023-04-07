@@ -23,26 +23,8 @@ public class RestClient {
         log.info(String.format("Request: %s", url));
     }
 
-    public int getOKStatusCode() {
+    public int getStatusCode() {
         statusCode = response.getStatusCode();
-        if (statusCode != 200) {
-            log.error(String.format("An error code received. Server returned %d %s",
-                    statusCode, response.getStatusLine()));
-            throw new RuntimeException(String.format("An error code received. Server returned %d %s",
-                    statusCode, response.getStatusLine()));
-        }
-        log.info(String.format("Status code: %s", statusCode));
-        return statusCode;
-    }
-
-    public int getNotFoundStatusCode() {
-        statusCode = response.getStatusCode();
-        if (statusCode != 404) {
-            log.error(String.format("An error code received. Server returned %d %s",
-                    statusCode, response.getStatusLine()));
-            throw new RuntimeException(String.format("An error code received. Server returned %d %s",
-                    statusCode, response.getStatusLine()));
-        }
         log.info(String.format("Status code: %s", statusCode));
         return statusCode;
     }

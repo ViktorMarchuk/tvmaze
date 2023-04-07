@@ -10,7 +10,6 @@ import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Log4j2
 public class TVShowValidationUtils {
@@ -48,17 +47,6 @@ public class TVShowValidationUtils {
         }
         log.info(String.format("TVShow: %s", tvShow));
         return tvShow;
-    }
-
-
-    public static boolean isResponseContainsPartOfTVShow(String tvShowPartOfName, String body) {
-        List<TVShow> tvShowList = createTVShowList(body);
-        return tvShowList.stream().anyMatch(tvShow -> Objects.equals(tvShow.getName(), tvShowPartOfName));
-    }
-
-    public static boolean isResponseContainsTVShow(String tvShowName, String body) {
-        TVShow tvShow = createTVShow(body);
-        return Objects.equals(tvShow.getName(), tvShowName);
     }
 
     public static boolean isArrayOfShowsValid(String body) {

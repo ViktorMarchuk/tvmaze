@@ -1,7 +1,9 @@
 package com.epam.tvmaze.test;
 
 import com.epam.tvmaze.data.DataRequest;
+import com.epam.tvmaze.pojo.TVShow;
 import com.epam.tvmaze.specifications.TVShowValidationService;
+import com.epam.tvmaze.utils.TVShowValidationUtils;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,11 +13,15 @@ public class TVShowSingleSearchValidTest extends BaseTest {
     public void testGetSingleSearchResponseContainsShow(String tvShowName) {
         String url = String.format("/singlesearch/shows?q=%s", tvShowName);
         client.sendGet(url);
-        TVShowValidationService tvShowValidationService = new TVShowValidationService(client);
 
-        assertThat(client.getOKStatusCode()).isEqualTo(200);
-        assertThat(tvShowValidationService.isResponseContainsTVShow(tvShowName))
-                .as("Response should contain TV show with name %s", tvShowName);
+        assertThat(client.getStatusCode()).isEqualTo(200);
+
+        TVShow tvShow = TVShowValidationUtils.createTVShow(client.getBody());
+        assertThat(tvShow.getName())
+                .as("Response should contain TV show with name %s", tvShowName)
+                .isEqualTo(tvShowName);
+
+        TVShowValidationService tvShowValidationService = new TVShowValidationService(client);
         assertThat(tvShowValidationService.isValidSingleSearchShowApiResponse(client.getBody()))
                 .as("Response should be valid").isTrue();
     }

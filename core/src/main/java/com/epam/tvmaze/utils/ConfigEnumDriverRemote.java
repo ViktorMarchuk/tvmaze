@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ConfigEnumDriverRemote {
-    REMOTE("driverRemote"),
+    REMOTE("remote"),
     USER_NAME("username"),
     ACCESS_KEY("accessKey"),
     BROWSER_NAME("browserName"),
