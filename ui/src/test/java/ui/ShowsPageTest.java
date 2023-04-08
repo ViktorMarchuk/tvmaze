@@ -23,7 +23,7 @@ public class ShowsPageTest extends BaseTest{
 
     @Test
     public void testFilterShowsByParameterRating(){
-        List <String> expected = Arrays.asList("Game of Thrones  Breaking Bad  Firefly  One Piece  Chernobyl  The World at War  Hajime no Ippo");
+        List <String> expected = Arrays.asList("Game of Thrones  Breaking Bad  One Piece  Firefly  Chernobyl  The World at War  Hajime no Ippo");
         actionsOnShowsPage.actionWithFilterShowsByParameterRating();
 
         Assertions.assertThat(actionsOnShowsPage.getTextFromArrayXpath(xPathForDataArray)).isEqualTo(expected);
