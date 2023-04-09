@@ -22,6 +22,7 @@ public class ActionsOnShowsPage extends ShowsPage{
         clickChosenRatingByEstimateNine();
         clickButtonFilter();
     }
+
     public void actionWithFilterShowByParameterShowBy(){
         openPage();
         clickLabelShows();

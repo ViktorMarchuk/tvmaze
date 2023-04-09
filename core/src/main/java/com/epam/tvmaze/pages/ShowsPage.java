@@ -3,7 +3,7 @@ package com.epam.tvmaze.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ShowsPage extends HomePage{
+public class ShowsPage extends LoginPage{
     @FindBy(id = "show-following")
     private WebElement dropDownListByLabelFollowing;
     @FindBy(xpath = "//select[@id='show-following']/option[3]")
@@ -18,7 +18,7 @@ public class ShowsPage extends HomePage{
     private WebElement chosenRatingEstimateEighth;
     @FindBy(id = "show-sort")
     private WebElement dropDownListByLabelSortBy;
-    @FindBy(xpath = "//*[@id='show-sort']/option[5]")
+    @FindBy(xpath = "//select[@id='show-sort']/option[5]")
     private WebElement chosenByLabelSortByAtoZ;
 
     public void clickDropDownListFollowing(){

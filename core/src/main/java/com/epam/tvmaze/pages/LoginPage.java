@@ -5,7 +5,7 @@ import com.epam.tvmaze.utils.ConfigReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends AbstractPage{
+public class LoginPage extends HomePage{
     @FindBy(xpath = "//div[@id='user-tools']/div/a[1]")
     private WebElement fieldLogin;
     @FindBy(id = "loginform-username")
