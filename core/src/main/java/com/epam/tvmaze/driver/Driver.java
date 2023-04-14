@@ -19,16 +19,34 @@ public class Driver {
 
     private Driver() {
     }
+//    public static synchronized WebDriver getInstance() {
+//        if (Objects.isNull(getThreadLocalDriver())) {
+//            boolean isRemote = Boolean.parseBoolean(ConfigReader.getValue(ConfigEnumDriverRemote.REMOTE));
+//            WebDriver driver = isRemote ?
+//                    createRemoteInstance() : WebDriverFactory.installDriver(getValueOfBrowser());
+//            threadLocalDriver.set(driver);
+//        }
+//        WebDriver driver = getThreadLocalDriver();
+//        driver.manage().window().maximize();
+//        return driver;
+//    }
 
     public static synchronized WebDriver getInstance() {
         if (Objects.isNull(getThreadLocalDriver())) {
-            boolean isRemote = Boolean.parseBoolean(ConfigReader.getValue(ConfigEnumDriverRemote.REMOTE));
-            WebDriver driver = isRemote ? createRemoteInstance() : WebDriverFactory.installDriver(getValueOfBrowser());
+            WebDriver driver = isRemote() ?
+                    createRemoteInstance() : WebDriverFactory.installDriver(getValueOfBrowser());
             threadLocalDriver.set(driver);
         }
         WebDriver driver = getThreadLocalDriver();
         driver.manage().window().maximize();
         return driver;
+    }
+
+    private static boolean isRemote() {
+        String remoteDriverSystem = System.getProperty(ConfigEnumDriverRemote.REMOTE.getParam());
+        return Objects.nonNull(remoteDriverSystem) ?
+                Boolean.parseBoolean(remoteDriverSystem) :
+                Boolean.parseBoolean(ConfigReader.getValue(ConfigEnumDriverRemote.REMOTE));
     }
 
     private static synchronized WebDriver getThreadLocalDriver() {

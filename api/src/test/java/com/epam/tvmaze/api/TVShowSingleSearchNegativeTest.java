@@ -1,4 +1,4 @@
-package com.epam.tvmaze.test;
+package com.epam.tvmaze.api;
 
 import com.epam.tvmaze.data.ApiDataRequest;
 import org.testng.annotations.Test;

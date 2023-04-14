@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="classes" thread-count="1">
+    <test name="full" parallel="none">
+        <packages>
+            <package name="com.epam.tvmaze.ui"></package>
+        </packages>
+    </test>
+</suite>

@@ -1,6 +1,6 @@
 package com.epam.tvmaze.utils;
 
-import com.epam.tvmaze.pojo.TVShow;
+import com.epam.tvmaze.pojo.show.TVShow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
