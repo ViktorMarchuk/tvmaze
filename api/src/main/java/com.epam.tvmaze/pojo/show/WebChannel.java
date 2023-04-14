@@ -1,4 +1,4 @@
-package com.epam.tvmaze.pojo;
+package com.epam.tvmaze.pojo.show;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

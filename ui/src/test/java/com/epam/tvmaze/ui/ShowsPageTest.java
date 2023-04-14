@@ -1,13 +1,13 @@
-package com.epam.tvmaze.test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.AssertJUnit.assertTrue;
+package com.epam.tvmaze.ui;
 
 import com.epam.tvmaze.pages.ShowsPage;
-import com.epam.tvmaze.steps.ActionsOnShowsPage;
+import com.epam.tvmaze.steps_ui.ActionsOnShowsPage;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.AssertJUnit.assertTrue;
 
 @Log4j2
 public class ShowsPageTest extends BaseTest {

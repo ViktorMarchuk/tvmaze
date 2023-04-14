@@ -3,7 +3,7 @@ package com.epam.tvmaze.data;
 import com.epam.tvmaze.utils.RandomData;
 import org.testng.annotations.DataProvider;
 
-public class DataRequest {
+public class ApiDataRequest {
     @DataProvider(name = "partOfName")
     public static Object[][] providePartOfTVShowName() {
         return new Object[][]{{"Wednesday"}, {"Hamlet"}, {"Downtown"}};

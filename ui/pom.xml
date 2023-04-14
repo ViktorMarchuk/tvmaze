@@ -18,26 +18,31 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>com.epam.tvmaze</groupId>
-      <artifactId>core</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <scope>test</scope>
-    </dependency>
+      <dependency>
+          <groupId>com.epam.tvmaze</groupId>
+          <artifactId>core</artifactId>
+          <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>com.epam.tvmaze</groupId>
+          <artifactId>api</artifactId>
+          <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <!--      <scope>test</scope>-->
+      </dependency>
+      <dependency>
+          <groupId>org.assertj</groupId>
+          <artifactId>assertj-core</artifactId>
+          <!--      <scope>test</scope>-->
+      </dependency>
   </dependencies>
 
   <build>

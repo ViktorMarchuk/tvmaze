@@ -1,4 +1,4 @@
-package com.epam.tvmaze.steps;
+package com.epam.tvmaze.steps_ui;
 
 import com.epam.tvmaze.pages.ShowsPage;
 

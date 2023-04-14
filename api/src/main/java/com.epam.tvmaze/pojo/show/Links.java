@@ -1,4 +1,4 @@
-package com.epam.tvmaze.pojo;
+package com.epam.tvmaze.pojo.show;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -9,6 +9,6 @@ import lombok.ToString;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(includeFieldNames = true)
-public class PreviousEpisode {
-    private String href;
+public class Links {
+    private PreviousEpisode previousepisode;
 }

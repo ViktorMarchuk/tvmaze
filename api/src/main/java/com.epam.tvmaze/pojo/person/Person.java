@@ -1,4 +1,4 @@
-package com.epam.tvmaze.pojo;
+package com.epam.tvmaze.pojo.person;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -8,12 +8,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ToString(includeFieldNames = true)
-public class TVShow {
+@ToString
+public class Person {
     private int id;
     private String url;
     private String name;
-    private WebChannel webChannel;
-    private Links _links;
-    private PreviousEpisode previousepisode;
+    private Country country;
+    private String birthday;
+    private String gender;
 }

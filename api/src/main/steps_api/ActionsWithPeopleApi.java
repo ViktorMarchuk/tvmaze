@@ -7,6 +7,6 @@ import io.restassured.response.Response;
 public class ActionsWithPeopleApi {
 
   public static Response getNameApi(String url, String path, String endPoint) {
-    return given().get(url + path + endPoint);
+    return RestAssured.given().get(url + path + endPoint);
   }
 }

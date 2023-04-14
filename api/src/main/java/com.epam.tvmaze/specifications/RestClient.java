@@ -16,11 +16,20 @@ public class RestClient {
         RestAssured.baseURI = ConfigReader.getValue(ConfigEnum.API_URL);
     }
 
+    public <T> T sendGetArray(String url, Class<T[]> asClass) {
+        log.info(String.format("Request: %s", url));
+        return RestAssured.given()
+                .when()
+                .get(url)
+                .then()
+                .extract()
+                .as(asClass)[0];
+    }
+
     public void sendGet(String url) {
         response = RestAssured.given()
                 .when()
                 .get(url);
-        log.info(String.format("Request: %s", url));
     }
 
     public int getStatusCode() {
@@ -34,7 +43,6 @@ public class RestClient {
         log.info(String.format("Body is %s", body));
         return body;
     }
-
     public void closeClient() {
         RestAssured.reset();
     }

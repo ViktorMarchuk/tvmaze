@@ -4,6 +4,7 @@ image: maven:3.8.4-jdk-11
 # Define the stages for the pipeline
 stages:
   - build
+  - info
   - test
 
 # Build stage
@@ -15,13 +16,44 @@ build:
     paths:
       - target/*.jar
 
+# Info stage
+info:
+  stage: info
+  needs: [ ]
+  script: |
+    echo "QODANA_REMOTE_URL: git@$CI_SERVER_HOST:$CI_PROJECT_PATH.git"
+    echo "QODANA_BRANCH: $CI_COMMIT_BRANCH"
+    echo "QODANA_REVISION: $CI_COMMIT_SHA"
+    echo "QODANA_JOB_URL: $CI_JOB_URL"
+    echo "QODANA_REPO_URL: $CI_PROJECT_URL"
+
+# Qodana stage
+qodana:
+  image:
+    name: artifactoryspb.epam.com/docker-proxy/jetbrains/qodana-jvm-community:latest
+    entrypoint: [ "" ]
+  variables:
+    QODANA_TOKEN: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcmdhbml6YXRpb24iOiJBRGdRZSIsInByb2plY3QiOiIzQkJrViIsInRva2VuIjoiM0pibjYifQ.3B-V-n4FWbcXsrM1dyika_IrkT1nxafUq0U07n4oW_Y
+    QODANA_REMOTE_URL: git@$CI_SERVER_HOST:$CI_PROJECT_PATH.git
+    QODANA_BRANCH: $CI_COMMIT_BRANCH
+    QODANA_REVISION: $CI_COMMIT_SHA
+    QODANA_JOB_URL: $CI_JOB_URL
+    QODANA_REPO_URL: $CI_PROJECT_URL
+  script:
+    - qodana
+  artifacts:
+    paths:
+      - qodana
+
 # Allow to run test job manually
 ui-test:
   stage: test
   when: manual
+  dependencies:
+    - build
   image: maven:3.8.4-jdk-11
   before_script:
-    # Add LambdaTest settings
+    # Add LambdaTest and Qodana settings
     - export LT_USERNAME=kava.march.2023
     - export LT_ACCESS_KEY=N6DCHH6j9sqRif30J5GwIVg2IF9HUJypR0ZGOdgIfFvZ5h2Gde
 
@@ -32,6 +64,8 @@ ui-test:
 api-test:
   stage: test
   when: manual
+  dependencies:
+    - build
   image: maven:3.8.4-jdk-11
   before_script:
     # Add LambdaTest settings
