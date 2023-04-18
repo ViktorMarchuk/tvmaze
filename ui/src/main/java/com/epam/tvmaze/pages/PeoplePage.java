@@ -12,24 +12,6 @@ public class PeoplePage extends HomePage {
     @FindBy(xpath = "//a[contains(@href, '/people/' ) and @itemprop = 'url']")
     private WebElement linkUrl;
 
-    /**
-     * impossible to use, so this is not a WebElement labelCountry,but a text node
-     **/
-    @FindBy(xpath = "//div[@id='general-info-panel']//strong[contains(text(),'Born')]/following-sibling::text()[1]]")
-    private WebElement labelCountry;
-
-    /**
-     * impossible to use, so this is not a WebElement labelBirthday,but a text node
-     **/
-    @FindBy(xpath = "//div[@id='general-info-panel']//strong[contains(text(),'Birthday')]/following-sibling::text()[1]")
-    private WebElement labelBirthday;
-
-    /**
-     * impossible to use, so this is not a WebElement labelGender,but a text node
-     **/
-    @FindBy(xpath = "//div[@id='general-info-panel']//strong[contains(text(),'Gender:')]/following-sibling::text()[1]")
-    private WebElement labelGender;
-
     public String getNameAndSurname() {
         log.info(String.format("Person's name and surname - %s", labelName.getText()));
         return labelName.getText();
@@ -40,9 +22,6 @@ public class PeoplePage extends HomePage {
         return linkUrl.getAttribute("href");
     }
 
-    /**
-     * impossible to use labelCountry in this method, so this is not a WebElement
-     **/
     public String getCountryName() {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         String countryValue = ((String) javascriptExecutor.executeScript
@@ -53,9 +32,6 @@ public class PeoplePage extends HomePage {
         return countryValue;
     }
 
-    /**
-     * impossible to use labelBirthday in this method, so this is not a WebElement
-     **/
     public String getPersonBirthday() {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         String birthdayValue = ((String) javascriptExecutor.executeScript
@@ -66,9 +42,6 @@ public class PeoplePage extends HomePage {
         return birthdayValue;
     }
 
-    /**
-     * impossible to use labelGender in this method, so this is not a WebElement
-     **/
     public String getPersonGender() {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         String genderValue = ((String) javascriptExecutor.executeScript

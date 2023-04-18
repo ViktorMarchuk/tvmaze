@@ -17,13 +17,11 @@ public class TVShowValidationUtils {
         ObjectMapper mapper = new ObjectMapper();
         List<TVShow> tvShowList = new ArrayList<>();
         try {
-            // Преобразовываем ответ в список объектов SearchResult
             List<SearchResult> searchResultList = mapper.readValue(body, new TypeReference<List<SearchResult>>() {
             });
-            // Преобразовываем каждый объект SearchResult в объект TVShow
             for (SearchResult searchResult : searchResultList) {
                 TVShow tvShow = searchResult.getTvShow();
-                if (tvShow != null && tvShow.getId() != 0) { // проверяем, что поле id было заполнено
+                if (tvShow != null && tvShow.getId() != 0) {
                     tvShowList.add(tvShow);
                 } else {
                     log.warn("Unable to parse TVShow object: " + searchResult);
@@ -40,7 +38,6 @@ public class TVShowValidationUtils {
         ObjectMapper mapper = new ObjectMapper();
         TVShow tvShow = null;
         try {
-            // Преобразовываем ответ в объект TVShow
             tvShow = mapper.readValue(body, TVShow.class);
         } catch (JsonProcessingException e) {
             log.error("Error while processing JSON: " + e.getMessage());

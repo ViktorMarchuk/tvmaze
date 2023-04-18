@@ -13,25 +13,25 @@ import java.time.Duration;
 @Log4j2
 public class Waiters {
 
-  public static final int WAIT_TIMEOUT_SECONDS = 10;
+    public static final int WAIT_TIMEOUT_SECONDS = 10;
 
-  public static void waitForLoad() {
-    WebDriverWait wait = new WebDriverWait(Driver.getInstance(),
-        Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
-    wait.until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd).
-        executeScript("return document.readyState").equals("complete"));
-    log.info("page is load");
-  }
+    public static void waitForLoad() {
+        WebDriverWait wait = new WebDriverWait(Driver.getInstance(),
+                Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
+        wait.until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd).
+                executeScript("return document.readyState").equals("complete"));
+        log.info("page is load");
+    }
 
-  public static WebElement waitForElementToBeClickable(WebElement webElement) {
-    return new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(
-        ExpectedConditions
-            .elementToBeClickable(webElement));
-  }
+    public static WebElement waitForElementToBeClickable(WebElement webElement) {
+        return new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(
+                ExpectedConditions
+                        .elementToBeClickable(webElement));
+    }
 
-  public static WebElement waitForVisibilityOfElement(WebElement webElement) {
-    return new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(
-        ExpectedConditions
-            .visibilityOf(webElement));
-  }
+    public static WebElement waitForVisibilityOfElement(WebElement webElement) {
+        return new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(
+                ExpectedConditions
+                        .visibilityOf(webElement));
+    }
 }

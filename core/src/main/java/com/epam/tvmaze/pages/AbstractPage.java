@@ -6,10 +6,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AbstractPage {
 
-  protected WebDriver driver;
+    protected WebDriver driver;
 
-  public AbstractPage() {
-    driver = Driver.getInstance();
-    PageFactory.initElements(driver, this);
-  }
+    public AbstractPage() {
+        driver = Driver.getInstance();
+        PageFactory.initElements(driver, this);
+    }
 }

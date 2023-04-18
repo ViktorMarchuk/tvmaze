@@ -19,17 +19,6 @@ public class Driver {
 
     private Driver() {
     }
-//    public static synchronized WebDriver getInstance() {
-//        if (Objects.isNull(getThreadLocalDriver())) {
-//            boolean isRemote = Boolean.parseBoolean(ConfigReader.getValue(ConfigEnumDriverRemote.REMOTE));
-//            WebDriver driver = isRemote ?
-//                    createRemoteInstance() : WebDriverFactory.installDriver(getValueOfBrowser());
-//            threadLocalDriver.set(driver);
-//        }
-//        WebDriver driver = getThreadLocalDriver();
-//        driver.manage().window().maximize();
-//        return driver;
-//    }
 
     public static synchronized WebDriver getInstance() {
         if (Objects.isNull(getThreadLocalDriver())) {

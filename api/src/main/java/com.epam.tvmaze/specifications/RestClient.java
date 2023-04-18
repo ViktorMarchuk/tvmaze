@@ -43,6 +43,7 @@ public class RestClient {
         log.info(String.format("Body is %s", body));
         return body;
     }
+
     public void closeClient() {
         RestAssured.reset();
     }

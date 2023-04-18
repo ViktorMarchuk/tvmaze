@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="classes" thread-count="1">
-    <test name="full" parallel="none">
+<suite name="Suite ui" parallel="classes" thread-count="1">
+    <test name="UITests">
         <packages>
-            <package name="com.epam.tvmaze.ui"></package>
+            <package name="com.epam.tvmaze.ui"/>
         </packages>
     </test>
 </suite>
