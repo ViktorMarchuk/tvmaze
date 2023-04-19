@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite api" parallel="classes" thread-count="1">
+    <test name="APITests">
+        <packages>
+            <package name="com.epam.tvmaze.api"/>
+        </packages>
+    </test>
+</suite>
