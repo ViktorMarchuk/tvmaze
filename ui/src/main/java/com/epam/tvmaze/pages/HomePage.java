@@ -9,7 +9,8 @@ import org.openqa.selenium.support.FindBy;
 
 @Log4j2
 public class HomePage extends AbstractPage {
-
+    @FindBy(xpath = "//div[@id='user-tools']//a[@href='/account/login']")
+    private WebElement fieldLogin;
     @FindBy(id = "searchform-q")
     private WebElement inputSearch;
     @FindBy(xpath = "//*[@id='w1']//section//a[contains(@href, 'people')]")
@@ -22,6 +23,11 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
+    public LoginPage clickLinkLogin() {
+        fieldLogin.click();
+        return new LoginPage();
+    }
+
     public HomePage inputSearchRequest(String searchRequest) {
         inputSearch.clear();
         inputSearch.sendKeys(searchRequest, Keys.ENTER);
@@ -29,11 +35,13 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public void clickLinkPerson() {
+    public PeoplePage clickLinkPerson() {
         linkPerson.click();
+        return new PeoplePage();
     }
 
-    public void clickLabelShows() {
+    public ShowsPage clickLinkShows() {
         labelShows.click();
+        return new ShowsPage();
     }
 }

@@ -1,21 +1,28 @@
 package com.epam.tvmaze.ui;
 
 import com.epam.tvmaze.data.UIDataRequest;
+import com.epam.tvmaze.pages.HomePage;
 import com.epam.tvmaze.pages.PeoplePage;
 import com.epam.tvmaze.pojo.person.Person;
 import com.epam.tvmaze.specifications.PersonAPIHandler;
 import lombok.extern.log4j.Log4j2;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Log4j2
 public class PeopleSearchTest extends BaseTest {
+    @BeforeMethod
+    @Override
+    public void beforeTest() {
+        homePage = new HomePage().openPage();
+    }
+
     @Test(description = "UI peopleSearch test with valid data", dataProvider = "Search people by valid data",
             dataProviderClass = UIDataRequest.class)
     public void peopleSearch(String peopleNameAndSurname) {
-        PeoplePage peoplePage = new PeoplePage();
-        peoplePage.inputSearchRequest(peopleNameAndSurname).clickLinkPerson();
+        PeoplePage peoplePage = homePage.inputSearchRequest(peopleNameAndSurname).clickLinkPerson();
 
         PersonAPIHandler personAPIHandler = new PersonAPIHandler();
         Person apiPerson = personAPIHandler.getAPIPerson(peopleNameAndSurname);

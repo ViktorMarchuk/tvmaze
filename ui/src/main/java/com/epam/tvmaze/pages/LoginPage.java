@@ -6,9 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends HomePage {
-
-    @FindBy(xpath = "//div[@id='user-tools']//a[@href='/account/login']")
-    private WebElement fieldLogin;
     @FindBy(id = "loginform-username")
     private WebElement fieldUserName;
     @FindBy(id = "loginform-password")
@@ -16,19 +13,24 @@ public class LoginPage extends HomePage {
     @FindBy(xpath = "//form[@id='w0']/button")
     private WebElement buttonLogin;
 
-    public void clickFieldLogin() {
-        fieldLogin.click();
+    @Override
+    public LoginPage openPage() {
+        driver.navigate().to(ConfigReader.getValue(ConfigEnum.BASE_URL));
+        return this;
     }
 
-    public void inputUserName() {
+    public LoginPage inputUserName() {
         fieldUserName.sendKeys(ConfigReader.getValue(ConfigEnum.EMAIL));
+        return this;
     }
 
-    public void inputPassword() {
+    public LoginPage inputPassword() {
         fieldPassword.sendKeys(ConfigReader.getValue(ConfigEnum.PASSWORD));
+        return this;
     }
 
-    public void clickButtonLogin() {
+    public HomePage clickButtonLogin() {
         buttonLogin.click();
+        return new HomePage();
     }
 }

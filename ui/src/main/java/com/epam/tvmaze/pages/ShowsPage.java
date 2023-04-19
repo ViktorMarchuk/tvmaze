@@ -1,14 +1,14 @@
 package com.epam.tvmaze.pages;
 
+import com.epam.tvmaze.utils.ConfigEnum;
+import com.epam.tvmaze.utils.ConfigReader;
 import lombok.Data;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Data
-public class ShowsPage extends LoginPage {
+public class ShowsPage extends HomePage {
 
-    public final String FOLLOWING = "Following";
-    public final String THERE_ARE_NO_SHOW_ENTRIES_YET = "There are no Show entries yet.";
     @FindBy(id = "show-following")
     private WebElement dropDownListByLabelFollowing;
     @FindBy(xpath = "//select[@id='show-following']//option[@value='1']")
@@ -34,40 +34,55 @@ public class ShowsPage extends LoginPage {
     @FindBy(xpath = "//div[@id='w1']/div")
     private WebElement nameIfThePageDoNotHaveAnyMovieOnPage;
 
-    public void clickDropDownListFollowing() {
+    @Override
+    public ShowsPage openPage() {
+        driver.navigate().to(ConfigReader.getValue(ConfigEnum.BASE_URL));
+        return this;
+    }
+
+    public ShowsPage clickDropDownListFollowing() {
         dropDownListByLabelFollowing.click();
+        return this;
     }
 
-    public void clickNameFollowing() {
+    public ShowsPage clickNameFollowing() {
         chosenNameFollowing.click();
+        return this;
     }
 
-    public void clickButtonFilter() {
+    public ShowsPage clickButtonFilter() {
         buttonFilter.click();
+        return this;
     }
 
-    public void clickDropDownListRating() {
+    public ShowsPage clickDropDownListRating() {
         dropDownListByLabelRating.click();
+        return this;
     }
 
-    public void clickChosenRatingByEstimateNine() {
+    public ShowsPage clickChosenRatingByEstimateNine() {
         chosenRatingEstimateNine.click();
+        return this;
     }
 
-    public void clickDropDownListByLabelSortBy() {
+    public ShowsPage clickDropDownListByLabelSortBy() {
         dropDownListByLabelSortBy.click();
+        return this;
     }
 
-    public void clickChosenByLabelSortByAtoZ() {
+    public ShowsPage clickChosenByLabelSortByAtoZ() {
         chosenByLabelSortByAtoZ.click();
+        return this;
     }
 
-    public void clickChosenRatingByEstimateEighth() {
+    public ShowsPage clickChosenRatingByEstimateEighth() {
         chosenByLabelSortByAtoZ.click();
+        return this;
     }
 
-    public void clickLabelFirstMovieOnPageByRating() {
+    public ShowsPage clickLabelFirstMovieOnPageByRating() {
         imageFirstChosenMovieOnPage.click();
+        return this;
     }
 
     public String getTextMovieRatingForTestFilterShowsByParameterRating() {

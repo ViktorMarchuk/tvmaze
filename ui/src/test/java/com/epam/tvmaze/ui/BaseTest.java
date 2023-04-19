@@ -2,18 +2,20 @@ package com.epam.tvmaze.ui;
 
 import com.epam.tvmaze.driver.Driver;
 import com.epam.tvmaze.pages.HomePage;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
-  @BeforeClass
-  public void openPage() {
-    new HomePage().openPage();
-  }
+    protected HomePage homePage;
 
-  @AfterClass(alwaysRun = true)
-  public void closeWebDriver() {
-    Driver.closeDriver();
-  }
+    @BeforeMethod
+    public void beforeTest() {
+        homePage = new HomePage().openPage();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void closeWebDriver() {
+        Driver.closeDriver();
+    }
 }

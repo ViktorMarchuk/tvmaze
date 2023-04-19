@@ -28,8 +28,9 @@ ui-test:
     - export LT_ACCESS_KEY=N6DCHH6j9sqRif30J5GwIVg2IF9HUJypR0ZGOdgIfFvZ5h2Gde
 
   script:
+    - mvn clean install -DskipTests=true
     # Add LambdaTest integration with Selenium
-    - mvn test -Dlt.username=$LT_USERNAME -Dlt.accesskey=$LT_ACCESS_KEY -Dremote=true -pl ui -am
+    - mvn test -Dlt.username=$LT_USERNAME -Dlt.accesskey=$LT_ACCESS_KEY -Dremote=true -pl ui -DsuiteXmlFiles="src/test/resources/testng.xml"
 
 api-test:
   stage: test
@@ -39,4 +40,5 @@ api-test:
   image: maven:3.8.4-jdk-11
 
   script:
-    - mvn test -pl api -am
+    - mvn clean install -DskipTests=true
+    - mvn clean test -pl api -DsuiteXmlFiles="src/test/resources/testng.xml"
