@@ -2,13 +2,17 @@ package com.epam.tvmaze.pages;
 
 import com.epam.tvmaze.utils.ConfigEnum;
 import com.epam.tvmaze.utils.ConfigReader;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Data
 public class ShowsPage extends HomePage {
 
+    private String xpathForRatingList = "//div[@id='w1']//a[@class='dropdown-action']/span";
     @FindBy(id = "show-following")
     private WebElement dropDownListByLabelFollowing;
     @FindBy(xpath = "//select[@id='show-following']//option[@value='1']")
@@ -25,14 +29,10 @@ public class ShowsPage extends HomePage {
     private WebElement dropDownListByLabelSortBy;
     @FindBy(xpath = "//select[@id='show-sort']//option[@value='3']")
     private WebElement chosenByLabelSortByAtoZ;
-    @FindBy(xpath = "//div[@id='w1']/div[1]")
-    private WebElement imageFirstChosenMovieOnPage;
-    @FindBy(xpath = "//section[@id='general-info-panel']//b[@itemprop='ratingValue']")
-    private WebElement movieRatingOnThePageWithFirstChosenMovie;
-    @FindBy(xpath = "//div[@id='following']//span[contains(text(),'Following')]")
-    private WebElement nameFollowingOnThePageWithFirstChosenMovie;
     @FindBy(xpath = "//div[@id='w1']/div")
     private WebElement nameIfThePageDoNotHaveAnyMovieOnPage;
+    @FindBy(xpath = "//div[@id='w1']//a[@class='follow-toggle auto cell ']")
+    private WebElement iconWithShapeHeartMatchesNameFollowing;
 
     @Override
     public ShowsPage openPage() {
@@ -79,22 +79,12 @@ public class ShowsPage extends HomePage {
         chosenByLabelSortByAtoZ.click();
         return this;
     }
-
-    public ShowsPage clickLabelFirstMovieOnPageByRating() {
-        imageFirstChosenMovieOnPage.click();
-        return this;
-    }
-
-    public String getTextMovieRatingForTestFilterShowsByParameterRating() {
-        return movieRatingOnThePageWithFirstChosenMovie.getText();
-    }
-
-    public String getTextWithLabelFollowingOnThePageWithFirstChosenMovie() {
-        return nameFollowingOnThePageWithFirstChosenMovie.getText();
-    }
-
-    public double getMovieRating(String s) {
-        double value = Double.parseDouble(s);
-        return value;
+    public List<Double> getRatingList(String xpath) {
+        List<WebElement> elements = driver.findElements(By.xpath(xpath));
+        List<Double> result = new ArrayList<>();
+        for (WebElement e : elements) {
+            result.add(Double.parseDouble(e.getText()));
+        }
+        return result;
     }
 }

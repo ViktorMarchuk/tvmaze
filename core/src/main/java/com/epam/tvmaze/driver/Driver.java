@@ -72,4 +72,8 @@ public class Driver {
         getInstance().quit();
         threadLocalDriver.remove();
     }
+    public static void cleanCookies() {
+        getInstance().manage().deleteAllCookies();
+        getInstance().navigate().refresh();
+    }
 }

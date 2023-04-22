@@ -18,4 +18,8 @@ public class BaseTest {
     public void closeWebDriver() {
         Driver.closeDriver();
     }
+    @AfterMethod
+    public void afterTest() {
+        Driver.cleanCookies();
+    }
 }
