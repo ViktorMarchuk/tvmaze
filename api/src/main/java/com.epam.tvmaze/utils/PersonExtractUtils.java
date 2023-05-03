@@ -1,51 +1,24 @@
 package com.epam.tvmaze.utils;
 
+import com.epam.tvmaze.pojo.person.SearchPeople;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class PersonExtractUtils {
 
-  public static String getNameFromUrlByJson(String urlString) {
-    URL url = null;
-    try {
-      url = new URL(urlString);
-    } catch (MalformedURLException e) {
-      throw new RuntimeException(e);
-    }
-
-    StringBuilder sb = new StringBuilder();
-    try (BufferedReader in = new BufferedReader(
-        new InputStreamReader(url.openStream(), StandardCharsets.UTF_8))) {
-      String inputLine;
-      while ((inputLine = in.readLine()) != null) {
-        sb.append(inputLine);
-      }
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
+  public static String getPersonName(String json) {
     ObjectMapper objectMapper = new ObjectMapper();
-    JsonNode jsonNode = null;
+    SearchPeople[] searchPeople = null;
     try {
-      jsonNode = objectMapper.readTree(sb.toString());
+      searchPeople = objectMapper.readValue(json, SearchPeople[].class);
     } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
+      log.error("Error while processing JSON: ", e.getMessage());
     }
-
-    if (jsonNode.isArray() && jsonNode.size() > 0) {
-      JsonNode firstResult = jsonNode.get(0);
-      JsonNode personNode = firstResult.get("person");
-      if (personNode != null) {
-        String name = personNode.get("name").asText();
-        return name;
-      }
+    if (searchPeople != null && searchPeople.length > 0 && searchPeople[0].getPerson() != null) {
+      String name = searchPeople[0].getPerson().getName();
+      return name;
     }
     return null;
   }

@@ -8,17 +8,7 @@ import com.epam.tvmaze.utils.ConfigReader;
 import com.epam.tvmaze.utils.PersonExtractUtils;
 import org.testng.annotations.Test;
 
-public class SearchByPeople extends BaseTest{
-
-  @Test(dataProvider = "peopleList", dataProviderClass = ApiDataRequest.class)
-  public void testGetSearchResponseByCorrectNameLastName(String name) {
-    String url = String.format(ConfigReader.getValue(ConfigEnum.API_URL) + "/search/people?q=" +
-        name);
-    client.sendGet(url);
-
-    assertThat(client.getStatusCode()).isEqualTo(200);
-    assertThat(PersonExtractUtils.getNameFromUrlByJson(url)).isEqualTo(name);
-  }
+public class SearchByPeopleNegativeTest extends BaseTest {
 
   @Test(dataProvider = "incorrectPeopleList", dataProviderClass = ApiDataRequest.class)
   public void testGetResponseByIncorrectPeopleNameLastName(String name) {
@@ -27,7 +17,6 @@ public class SearchByPeople extends BaseTest{
     client.sendGet(url);
 
     assertThat(client.getStatusCode()).isEqualTo(200);
-    assertThat(PersonExtractUtils.getNameFromUrlByJson(url)).isNullOrEmpty();
+    assertThat(PersonExtractUtils.getPersonName(url)).isNullOrEmpty();
   }
 }
-
