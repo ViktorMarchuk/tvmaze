@@ -2,21 +2,19 @@ package com.epam.tvmaze.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.epam.tvmaze.client.PeopleSearchClient;
 import com.epam.tvmaze.data.ApiDataRequest;
-import com.epam.tvmaze.utils.ConfigEnum;
-import com.epam.tvmaze.utils.ConfigReader;
 import com.epam.tvmaze.utils.PersonExtractUtils;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 public class SearchByPeopleNegativeTest extends BaseTest {
 
   @Test(dataProvider = "incorrectPeopleList", dataProviderClass = ApiDataRequest.class)
   public void testGetResponseByIncorrectPeopleNameLastName(String name) {
-    String url = String.format(ConfigReader.getValue(ConfigEnum.API_URL) + "/search/people?q=" +
-        name);
-    client.sendGet(url);
+    Response peopleSearchClient = new PeopleSearchClient().getPersonSearch(name);
 
-    assertThat(client.getStatusCode()).isEqualTo(200);
-    assertThat(PersonExtractUtils.getPersonName(url)).isNullOrEmpty();
+    assertThat(peopleSearchClient.getStatusCode()).isEqualTo(200);
+    assertThat(PersonExtractUtils.getPersonList(peopleSearchClient.getBody().asString())).isNullOrEmpty();
   }
 }
